@@ -612,6 +612,10 @@ img, video {
     margin-top: 0;
   }
 
+  .max-md\:flex {
+    display: flex;
+  }
+
   .max-md\:hidden {
     display: none;
   }

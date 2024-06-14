@@ -142,7 +142,7 @@ const ModalAdd = ({
         />
         {descriptionError && <p className="text-red-500 text-[10px]">{descriptionError}</p>}
         <p className="text-[#69665C] py-4 font-bold">Tags</p>
-        <div className="flex max-md:flex-col max-md:w-12 flex-wrap gap-2 max-md:gap-4">
+        <div className="flex flex-wrap gap-2 max-md:gap-4">
           {Object.keys(tagColors).map((tag) => (
             <button
               key={tag}

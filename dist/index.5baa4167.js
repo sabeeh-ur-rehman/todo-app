@@ -29192,7 +29192,7 @@ const ModalAdd = ({ open, handleClose, handleSubmit, inputValue, handleTitle, de
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "flex max-md:flex-col max-md:w-12 flex-wrap gap-2 max-md:gap-4",
+                    className: "flex flex-wrap gap-2 max-md:gap-4",
                     children: Object.keys(tagColors).map((tag)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                             type: "button",
                             onClick: ()=>handleTagSelection(tag),
