@@ -72,7 +72,7 @@ const Body = () => {
             <div>
               <div className="flex justify-between items-center">
                 <h2
-                  className={`font-semibold text-[#69665c] ${
+                  className={`font-semibold text-[#69665c] break-words ${
                     todo.done ? "line-through" : ""
                   }`}
                 >

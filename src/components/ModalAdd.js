@@ -151,7 +151,7 @@ const ModalAdd = ({
               className={`${
                 selectedTag === tag
                   ? "border border-[#69665C] outline-none"
-                  : "border border-transparent text-[#69665c] outline-none"
+                  : "border text-[#69665c] outline-none"
               } ${tagColors[tag]} rounded-full p-2 text-xs font-bold ${tagError && !selectedTag ? "border-red-500" : ""}`}
             >
               {tag}

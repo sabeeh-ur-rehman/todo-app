@@ -27289,6 +27289,24 @@ const Layout = ()=>{
             payload: tag === filterTag ? "" : tag
         });
     };
+    // const handleSubmit = () => {
+    //   if (inputValue) {
+    //     const newTodo = {
+    //       title: inputValue.trim(),
+    //       description: descriptionValue.trim(),
+    //       tags: selectedTag ? [selectedTag] : [],
+    //       done: false,
+    //     };
+    //     if (editingIndex !== null) {
+    //       const updatedTodos = [...todos];
+    //       updatedTodos[editingIndex] = { ...updatedTodos[editingIndex], ...newTodo };
+    //       dispatch({ type: 'SET_TODOS', payload: updatedTodos });
+    //     } else {
+    //       dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
+    //     }
+    //     handleClose();
+    //   }
+    // };
     const handleSubmit = ()=>{
         if (inputValue) {
             const newTodo = {
@@ -27299,26 +27317,28 @@ const Layout = ()=>{
                 ] : [],
                 done: false
             };
-            if (editingIndex !== null) {
-                const updatedTodos = [
-                    ...todos
-                ];
-                updatedTodos[editingIndex] = {
-                    ...updatedTodos[editingIndex],
-                    ...newTodo
-                };
-                dispatch({
+            setTimeout(()=>{
+                if (editingIndex !== null) {
+                    const updatedTodos = [
+                        ...todos
+                    ];
+                    updatedTodos[editingIndex] = {
+                        ...updatedTodos[editingIndex],
+                        ...newTodo
+                    };
+                    dispatch({
+                        type: "SET_TODOS",
+                        payload: updatedTodos
+                    });
+                } else dispatch({
                     type: "SET_TODOS",
-                    payload: updatedTodos
+                    payload: [
+                        ...todos,
+                        newTodo
+                    ]
                 });
-            } else dispatch({
-                type: "SET_TODOS",
-                payload: [
-                    ...todos,
-                    newTodo
-                ]
-            });
-            handleClose();
+                handleClose();
+            }, 2000);
         }
     };
     const handleDelete = (index)=>{
@@ -27359,7 +27379,7 @@ const Layout = ()=>{
                 handleOpen: handleOpen
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 86,
+                lineNumber: 108,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27372,7 +27392,7 @@ const Layout = ()=>{
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 88,
+                        lineNumber: 110,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bodyDefault.default), {
@@ -27383,13 +27403,13 @@ const Layout = ()=>{
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 94,
+                        lineNumber: 116,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Main.js",
-                lineNumber: 87,
+                lineNumber: 109,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalAddDefault.default), {
@@ -27405,7 +27425,7 @@ const Layout = ()=>{
                 isEditing: editingIndex !== null
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 102,
+                lineNumber: 124,
                 columnNumber: 7
             }, undefined)
         ]
@@ -28838,7 +28858,7 @@ const Body = ()=>{
                                     className: "flex justify-between items-center",
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                                            className: `font-semibold text-[#69665c] ${todo.done ? "line-through" : ""}`,
+                                            className: `font-semibold text-[#69665c] break-words ${todo.done ? "line-through" : ""}`,
                                             children: todo.title
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
@@ -29196,7 +29216,7 @@ const ModalAdd = ({ open, handleClose, handleSubmit, inputValue, handleTitle, de
                     children: Object.keys(tagColors).map((tag)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                             type: "button",
                             onClick: ()=>handleTagSelection(tag),
-                            className: `${selectedTag === tag ? "border border-[#69665C] outline-none" : "border border-transparent text-[#69665c] outline-none"} ${tagColors[tag]} rounded-full p-2 text-xs font-bold ${tagError && !selectedTag ? "border-red-500" : ""}`,
+                            className: `${selectedTag === tag ? "border border-[#69665C] outline-none" : "border text-[#69665c] outline-none"} ${tagColors[tag]} rounded-full p-2 text-xs font-bold ${tagError && !selectedTag ? "border-red-500" : ""}`,
                             children: tag
                         }, tag, false, {
                             fileName: "src/components/ModalAdd.js",
