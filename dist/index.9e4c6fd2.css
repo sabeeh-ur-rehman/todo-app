@@ -329,6 +329,10 @@ img, video {
   cursor: pointer;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -367,6 +371,14 @@ img, video {
 
 .gap-7 {
   gap: 1.75rem;
+}
+
+.text-wrap {
+  text-wrap: wrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
 }
 
 .rounded-full {
@@ -612,20 +624,12 @@ img, video {
     margin-top: 0;
   }
 
-  .max-md\:flex {
-    display: flex;
-  }
-
   .max-md\:hidden {
     display: none;
   }
 
   .max-md\:h-auto {
     height: auto;
-  }
-
-  .max-md\:w-12 {
-    width: 3rem;
   }
 
   .max-md\:w-auto {

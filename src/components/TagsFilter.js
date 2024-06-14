@@ -32,7 +32,7 @@ const TagsFilter = () => {
             onClick={() => handleTagSelect(tag)}
             className={`${
               tagColors[tag]
-            } rounded-full text-[#69665c] p-2 text-xs font-bold ${
+            } rounded-full text-[#69665c] p-2 text-xs font-bold outline-none ${
               filterTag === tag ? "ring-1 ring-offset-2 ring-[#69665C]" : ""
             }`}
           >
@@ -43,17 +43,18 @@ const TagsFilter = () => {
 
       <div
         className={`flex gap-2 max-md:hidden justify-center ${
-          todos.length === 0 ? "opacity-50 pointer-events-none" : ""
+          todos.length === 0 ? "opacity-50" : ""
         }`}
       >
         <input
+        className={`${todos.length=== 0 ? "cursor-not-allowed" : "cursor-pointer"}`}
           type="checkbox"
           checked={hideDone}
           onChange={toggleHideDone}
           disabled={todos.length === 0}
         />
         <label
-          className="text-xs font-semibold text-[#69665c]"
+          className={`text-xs font-semibold text-[#69665c] ${todos.length=== 0 ? "cursor-not-allowed" : "cursor-pointer"}`}
           onClick={toggleHideDone}
         >
           Hide Done Tasks

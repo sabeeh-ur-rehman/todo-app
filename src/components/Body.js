@@ -105,7 +105,7 @@ const Body = () => {
                   )}
                 </div>
               </div>
-              <p className={`text-[#69665c] ${todo.done ? "line-through" : ""}`}>
+              <p className={`text-[#69665c] break-words ${todo.done ? "line-through" : ""}`}>
                 {todo.description}
               </p>
             </div>
@@ -125,13 +125,13 @@ const Body = () => {
               <div className="flex items-center justify-end">
                 <input
                   type="checkbox"
-                  className="m-2 accent-white"
+                  className="m-2 accent-white cursor-pointer"
                   checked={todo.done}
                   onChange={() => handleDone(index)}
                 />
                 <label
                   onClick={() => handleDone(index)}
-                  className="font-semibold text-[#69665c]"
+                  className="font-semibold text-[#69665c] cursor-pointer"
                 >
                   Done
                 </label>

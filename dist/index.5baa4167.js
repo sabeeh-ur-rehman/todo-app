@@ -28906,7 +28906,7 @@ const Body = ()=>{
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    className: `text-[#69665c] ${todo.done ? "line-through" : ""}`,
+                                    className: `text-[#69665c] break-words ${todo.done ? "line-through" : ""}`,
                                     children: todo.description
                                 }, void 0, false, {
                                     fileName: "src/components/Body.js",
@@ -28941,7 +28941,7 @@ const Body = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                                             type: "checkbox",
-                                            className: "m-2 accent-white",
+                                            className: "m-2 accent-white cursor-pointer",
                                             checked: todo.done,
                                             onChange: ()=>handleDone(index)
                                         }, void 0, false, {
@@ -28951,7 +28951,7 @@ const Body = ()=>{
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                                             onClick: ()=>handleDone(index),
-                                            className: "font-semibold text-[#69665c]",
+                                            className: "font-semibold text-[#69665c] cursor-pointer",
                                             children: "Done"
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
@@ -29192,11 +29192,11 @@ const ModalAdd = ({ open, handleClose, handleSubmit, inputValue, handleTitle, de
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "flex flex-wrap gap-2 max-md:gap-4",
+                    className: "flex flex-wrap  gap-2 max-md:gap-4",
                     children: Object.keys(tagColors).map((tag)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                             type: "button",
                             onClick: ()=>handleTagSelection(tag),
-                            className: `${selectedTag === tag ? "border border-[#69665C]" : "border border-transparent text-[#69665c]"} ${tagColors[tag]} rounded-full p-2 text-xs font-bold ${tagError && !selectedTag ? "border-red-500" : ""}`,
+                            className: `${selectedTag === tag ? "border border-[#69665C] outline-none" : "border border-transparent text-[#69665c] outline-none"} ${tagColors[tag]} rounded-full p-2 text-xs font-bold ${tagError && !selectedTag ? "border-red-500" : ""}`,
                             children: tag
                         }, tag, false, {
                             fileName: "src/components/ModalAdd.js",
@@ -41507,7 +41507,7 @@ const TagsFilter = ()=>{
                 className: "flex flex-col max-md:flex-row max-md:justify-between gap-2",
                 children: Object.keys(tagColors).map((tag)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                         onClick: ()=>handleTagSelect(tag),
-                        className: `${tagColors[tag]} rounded-full text-[#69665c] p-2 text-xs font-bold ${filterTag === tag ? "ring-1 ring-offset-2 ring-[#69665C]" : ""}`,
+                        className: `${tagColors[tag]} rounded-full text-[#69665c] p-2 text-xs font-bold outline-none ${filterTag === tag ? "ring-1 ring-offset-2 ring-[#69665C]" : ""}`,
                         children: tag
                     }, tag, false, {
                         fileName: "src/components/TagsFilter.js",
@@ -41520,9 +41520,10 @@ const TagsFilter = ()=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: `flex gap-2 max-md:hidden justify-center ${todos.length === 0 ? "opacity-50 pointer-events-none" : ""}`,
+                className: `flex gap-2 max-md:hidden justify-center ${todos.length === 0 ? "opacity-50" : ""}`,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        className: `${todos.length === 0 ? "cursor-not-allowed" : "cursor-pointer"}`,
                         type: "checkbox",
                         checked: hideDone,
                         onChange: toggleHideDone,
@@ -41533,12 +41534,12 @@ const TagsFilter = ()=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                        className: "text-xs font-semibold text-[#69665c]",
+                        className: `text-xs font-semibold text-[#69665c] ${todos.length === 0 ? "cursor-not-allowed" : "cursor-pointer"}`,
                         onClick: toggleHideDone,
                         children: "Hide Done Tasks"
                     }, void 0, false, {
                         fileName: "src/components/TagsFilter.js",
-                        lineNumber: 55,
+                        lineNumber: 56,
                         columnNumber: 9
                     }, undefined)
                 ]
@@ -41555,12 +41556,12 @@ const TagsFilter = ()=>{
                     alt: "Monkey"
                 }, void 0, false, {
                     fileName: "src/components/TagsFilter.js",
-                    lineNumber: 64,
+                    lineNumber: 65,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/TagsFilter.js",
-                lineNumber: 63,
+                lineNumber: 64,
                 columnNumber: 7
             }, undefined)
         ]
