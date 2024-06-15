@@ -27289,24 +27289,6 @@ const Layout = ()=>{
             payload: tag === filterTag ? "" : tag
         });
     };
-    // const handleSubmit = () => {
-    //   if (inputValue) {
-    //     const newTodo = {
-    //       title: inputValue.trim(),
-    //       description: descriptionValue.trim(),
-    //       tags: selectedTag ? [selectedTag] : [],
-    //       done: false,
-    //     };
-    //     if (editingIndex !== null) {
-    //       const updatedTodos = [...todos];
-    //       updatedTodos[editingIndex] = { ...updatedTodos[editingIndex], ...newTodo };
-    //       dispatch({ type: 'SET_TODOS', payload: updatedTodos });
-    //     } else {
-    //       dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
-    //     }
-    //     handleClose();
-    //   }
-    // };
     const handleSubmit = ()=>{
         if (inputValue) {
             const newTodo = {
@@ -27338,7 +27320,7 @@ const Layout = ()=>{
                     ]
                 });
                 handleClose();
-            }, 2000);
+            }, 1000);
         }
     };
     const handleDelete = (index)=>{
@@ -27379,7 +27361,7 @@ const Layout = ()=>{
                 handleOpen: handleOpen
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 108,
+                lineNumber: 88,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27392,7 +27374,7 @@ const Layout = ()=>{
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 110,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bodyDefault.default), {
@@ -27403,13 +27385,13 @@ const Layout = ()=>{
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 116,
+                        lineNumber: 96,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Main.js",
-                lineNumber: 109,
+                lineNumber: 89,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalAddDefault.default), {
@@ -27425,7 +27407,7 @@ const Layout = ()=>{
                 isEditing: editingIndex !== null
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 124,
+                lineNumber: 104,
                 columnNumber: 7
             }, undefined)
         ]
@@ -41966,39 +41948,6 @@ function isAction(action) {
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iYVDd":[function(require,module,exports) {
-// const initialState = {
-//     todos: [],
-//     open: false,
-//     inputValue: "",
-//     descriptionValue: "",
-//     selectedTag: "",
-//     filterTag: "",
-//     editingIndex: null,
-//     hideDone: false,
-//   };
-//   const todosReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//       case 'SET_OPEN':
-//         return { ...state, open: action.payload };
-//       case 'SET_TODOS':
-//         return { ...state, todos: action.payload };
-//       case 'SET_INPUT_VALUE':
-//         return { ...state, inputValue: action.payload };
-//       case 'SET_DESCRIPTION_VALUE':
-//         return { ...state, descriptionValue: action.payload };
-//       case 'SET_SELECTED_TAG':
-//         return { ...state, selectedTag: action.payload };
-//       case 'SET_FILTER_TAG':
-//         return { ...state, filterTag: action.payload };
-//       case 'SET_EDITING_INDEX':
-//         return { ...state, editingIndex: action.payload };
-//       case 'SET_HIDE_DONE':
-//         return { ...state, hideDone: !state.hideDone }; 
-//       default:
-//         return state;
-//     }
-//   };
-//   export default todosReducer;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const loadTodos = ()=>{

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "./Header";
@@ -44,25 +43,6 @@ const Layout = () => {
     dispatch({ type: 'SET_FILTER_TAG', payload: tag === filterTag ? "" : tag });
   };
 
-  // const handleSubmit = () => {
-  //   if (inputValue) {
-  //     const newTodo = {
-  //       title: inputValue.trim(),
-  //       description: descriptionValue.trim(),
-  //       tags: selectedTag ? [selectedTag] : [],
-  //       done: false,
-  //     };
-  //     if (editingIndex !== null) {
-  //       const updatedTodos = [...todos];
-  //       updatedTodos[editingIndex] = { ...updatedTodos[editingIndex], ...newTodo };
-  //       dispatch({ type: 'SET_TODOS', payload: updatedTodos });
-  //     } else {
-  //       dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
-  //     }
-  //     handleClose();
-  //   }
-  // };
-
   const handleSubmit = () => {
     if (inputValue) {
       const newTodo = {
@@ -81,7 +61,7 @@ const Layout = () => {
           dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
         }
         handleClose();
-      }, 2000);
+      }, 1000);
     }
   };
 
