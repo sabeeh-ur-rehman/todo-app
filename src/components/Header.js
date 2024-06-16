@@ -1,4 +1,5 @@
 import React from "react";
+
 const Header = ({ handleOpen }) => {
   const reloadPage = () => {
     window.location.reload();
@@ -13,8 +14,6 @@ const Header = ({ handleOpen }) => {
           todo
         </h1>
         <div>
-          {/* plus icon that open modal  */}
-
           <svg
             className="w-7 fill-[#69665c] cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"

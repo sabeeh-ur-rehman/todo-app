@@ -2962,17 +2962,27 @@ var _storeDefault = parcelHelpers.interopDefault(_store);
 var _reactRedux = require("react-redux");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactHotToast = require("react-hot-toast");
 const Applayout = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRedux.Provider), {
         store: (0, _storeDefault.default),
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainDefault.default), {}, void 0, false, {
-            fileName: "app.js",
-            lineNumber: 10,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false, {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainDefault.default), {}, void 0, false, {
+                fileName: "app.js",
+                lineNumber: 11,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactHotToast.Toaster), {
+                position: "top-center"
+            }, void 0, false, {
+                fileName: "app.js",
+                lineNumber: 12,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
         fileName: "app.js",
-        lineNumber: 9,
+        lineNumber: 10,
         columnNumber: 5
     }, undefined);
 };
@@ -2980,7 +2990,7 @@ _c = Applayout;
 const root = (0, _reactDomDefault.default).createRoot(document.getElementById("root"));
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Applayout, {}, void 0, false, {
     fileName: "app.js",
-    lineNumber: 17,
+    lineNumber: 19,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -2991,7 +3001,7 @@ $RefreshReg$(_c, "Applayout");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom":"j6uA9","./src/components/Main":"jWapa","./src/redux/store":"bDp2K","react-redux":"62sf7","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom":"j6uA9","./src/components/Main":"jWapa","./src/redux/store":"bDp2K","react-redux":"62sf7","react":"21dqq","react-hot-toast":"gi0hv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27234,6 +27244,8 @@ var _modalAdd = require("./ModalAdd");
 var _modalAddDefault = parcelHelpers.interopDefault(_modalAdd);
 var _tagsFilter = require("./TagsFilter");
 var _tagsFilterDefault = parcelHelpers.interopDefault(_tagsFilter);
+var _reactHotToast = require("react-hot-toast");
+var _reactHotToastDefault = parcelHelpers.interopDefault(_reactHotToast);
 var _s = $RefreshSig$();
 const Layout = ()=>{
     _s();
@@ -27299,56 +27311,31 @@ const Layout = ()=>{
                 ] : [],
                 done: false
             };
-            setTimeout(()=>{
-                if (editingIndex !== null) {
-                    const updatedTodos = [
-                        ...todos
-                    ];
-                    updatedTodos[editingIndex] = {
-                        ...updatedTodos[editingIndex],
-                        ...newTodo
-                    };
-                    dispatch({
-                        type: "SET_TODOS",
-                        payload: updatedTodos
-                    });
-                } else dispatch({
+            if (editingIndex !== null) {
+                const updatedTodos = [
+                    ...todos
+                ];
+                updatedTodos[editingIndex] = {
+                    ...updatedTodos[editingIndex],
+                    ...newTodo
+                };
+                dispatch({
+                    type: "SET_TODOS",
+                    payload: updatedTodos
+                });
+                (0, _reactHotToastDefault.default).success("Todo Updated Successfully");
+            } else {
+                dispatch({
                     type: "SET_TODOS",
                     payload: [
                         ...todos,
                         newTodo
                     ]
                 });
-                handleClose();
-            }, 1000);
+                (0, _reactHotToastDefault.default).success("Todo Added Successfully");
+            }
+            handleClose();
         }
-    };
-    const handleDelete = (index)=>{
-        const newTodos = todos.filter((_, i)=>i !== index);
-        dispatch({
-            type: "SET_TODOS",
-            payload: newTodos
-        });
-    };
-    const handleEdit = (index)=>{
-        const todo = todos[index];
-        dispatch({
-            type: "SET_INPUT_VALUE",
-            payload: todo.title
-        });
-        dispatch({
-            type: "SET_DESCRIPTION_VALUE",
-            payload: todo.description
-        });
-        dispatch({
-            type: "SET_SELECTED_TAG",
-            payload: todo.tags[0] || ""
-        });
-        dispatch({
-            type: "SET_EDITING_INDEX",
-            payload: index
-        });
-        handleOpen();
     };
     const toggleHideDone = ()=>{
         dispatch({
@@ -27361,7 +27348,7 @@ const Layout = ()=>{
                 handleOpen: handleOpen
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 88,
+                lineNumber: 77,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27374,24 +27361,22 @@ const Layout = ()=>{
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 90,
+                        lineNumber: 79,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bodyDefault.default), {
                         todos: todos,
-                        handleDelete: handleDelete,
-                        handleEdit: handleEdit,
                         selectedTag: filterTag,
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 96,
+                        lineNumber: 85,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Main.js",
-                lineNumber: 89,
+                lineNumber: 78,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalAddDefault.default), {
@@ -27407,7 +27392,7 @@ const Layout = ()=>{
                 isEditing: editingIndex !== null
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 104,
+                lineNumber: 91,
                 columnNumber: 7
             }, undefined)
         ]
@@ -27429,7 +27414,7 @@ $RefreshReg$(_c, "Layout");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","./Header":"hsJbF","./Body":"8yaV8","./ModalAdd":"gQTpw","./TagsFilter":"bCbMY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"62sf7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","./Header":"hsJbF","./Body":"8yaV8","./ModalAdd":"gQTpw","./TagsFilter":"bCbMY","react-hot-toast":"gi0hv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"62sf7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Provider", ()=>Provider_default);
@@ -28560,7 +28545,7 @@ const Header = ({ handleOpen })=>{
                     children: "todo"
                 }, void 0, false, {
                     fileName: "src/components/Header.js",
-                    lineNumber: 9,
+                    lineNumber: 10,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28573,23 +28558,23 @@ const Header = ({ handleOpen })=>{
                             d: "M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
                         }, void 0, false, {
                             fileName: "src/components/Header.js",
-                            lineNumber: 24,
+                            lineNumber: 23,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Header.js",
-                        lineNumber: 18,
+                        lineNumber: 17,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/Header.js",
-                    lineNumber: 15,
+                    lineNumber: 16,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/Header.js",
-            lineNumber: 8,
+            lineNumber: 9,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
@@ -28754,6 +28739,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactHotToast = require("react-hot-toast");
+var _reactHotToastDefault = parcelHelpers.interopDefault(_reactHotToast);
 var _reactRedux = require("react-redux");
 var _s = $RefreshSig$();
 const tagColors = {
@@ -28787,6 +28774,9 @@ const Body = ()=>{
             type: "SET_TODOS",
             payload: newTodos
         });
+        (0, _reactHotToastDefault.default).error("Todo Deleted Successsfully");
+        if (dropdownIndex === index) setDropdownIndex(null);
+        else if (dropdownIndex > index) setDropdownIndex(dropdownIndex - 1);
     };
     const handleEdit = (index)=>{
         const todo = todos[index];
@@ -28832,7 +28822,7 @@ const Body = ()=>{
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
             className: "grid grid-cols-2 max-md:grid-cols-1 gap-4",
             children: filteredTodos.map((todo, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                    className: `bg-[#FDF9DE] gap-7 max-md:w-auto rounded-md p-4 my-2 flex flex-col justify-between`,
+                    className: "bg-[#FDF9DE] gap-7 max-md:w-auto rounded-md p-4 my-2 flex flex-col justify-between",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             children: [
@@ -28844,7 +28834,7 @@ const Body = ()=>{
                                             children: todo.title
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 74,
+                                            lineNumber: 84,
                                             columnNumber: 17
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28860,12 +28850,12 @@ const Body = ()=>{
                                                         d: "M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
                                                     }, void 0, false, {
                                                         fileName: "src/components/Body.js",
-                                                        lineNumber: 88,
+                                                        lineNumber: 98,
                                                         columnNumber: 21
                                                     }, undefined)
                                                 }, void 0, false, {
                                                     fileName: "src/components/Body.js",
-                                                    lineNumber: 82,
+                                                    lineNumber: 92,
                                                     columnNumber: 19
                                                 }, undefined),
                                                 dropdownIndex === index && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -28877,7 +28867,7 @@ const Body = ()=>{
                                                             children: "Edit"
                                                         }, void 0, false, {
                                                             fileName: "src/components/Body.js",
-                                                            lineNumber: 92,
+                                                            lineNumber: 102,
                                                             columnNumber: 23
                                                         }, undefined),
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -28886,25 +28876,25 @@ const Body = ()=>{
                                                             children: "Delete"
                                                         }, void 0, false, {
                                                             fileName: "src/components/Body.js",
-                                                            lineNumber: 98,
+                                                            lineNumber: 108,
                                                             columnNumber: 23
                                                         }, undefined)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "src/components/Body.js",
-                                                    lineNumber: 91,
+                                                    lineNumber: 101,
                                                     columnNumber: 21
                                                 }, undefined)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 81,
+                                            lineNumber: 91,
                                             columnNumber: 17
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 73,
+                                    lineNumber: 83,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -28912,13 +28902,13 @@ const Body = ()=>{
                                     children: todo.description
                                 }, void 0, false, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 108,
+                                    lineNumber: 118,
                                     columnNumber: 15
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 72,
+                            lineNumber: 82,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28930,12 +28920,12 @@ const Body = ()=>{
                                             children: tag
                                         }, tagIndex, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 115,
+                                            lineNumber: 125,
                                             columnNumber: 19
                                         }, undefined))
                                 }, void 0, false, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 113,
+                                    lineNumber: 123,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28948,7 +28938,7 @@ const Body = ()=>{
                                             onChange: ()=>handleDone(index)
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 126,
+                                            lineNumber: 134,
                                             columnNumber: 17
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28957,35 +28947,35 @@ const Body = ()=>{
                                             children: "Done"
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 132,
+                                            lineNumber: 140,
                                             columnNumber: 17
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 125,
+                                    lineNumber: 133,
                                     columnNumber: 15
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 112,
+                            lineNumber: 122,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, index, true, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 68,
+                    lineNumber: 78,
                     columnNumber: 11
                 }, undefined))
         }, void 0, false, {
             fileName: "src/components/Body.js",
-            lineNumber: 66,
+            lineNumber: 76,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 65,
+        lineNumber: 75,
         columnNumber: 5
     }, undefined);
 };
@@ -29005,7 +28995,680 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gQTpw":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"62sf7","react-hot-toast":"gi0hv"}],"gi0hv":[function(require,module,exports) {
+"use client";
+"use strict";
+var Y = Object.create;
+var E = Object.defineProperty;
+var q = Object.getOwnPropertyDescriptor;
+var G = Object.getOwnPropertyNames;
+var K = Object.getPrototypeOf, Z = Object.prototype.hasOwnProperty;
+var ee = (e, t)=>{
+    for(var o in t)E(e, o, {
+        get: t[o],
+        enumerable: !0
+    });
+}, j = (e, t, o, s)=>{
+    if (t && typeof t == "object" || typeof t == "function") for (let r of G(t))!Z.call(e, r) && r !== o && E(e, r, {
+        get: ()=>t[r],
+        enumerable: !(s = q(t, r)) || s.enumerable
+    });
+    return e;
+};
+var W = (e, t, o)=>(o = e != null ? Y(K(e)) : {}, j(t || !e || !e.__esModule ? E(o, "default", {
+        value: e,
+        enumerable: !0
+    }) : o, e)), te = (e)=>j(E({}, "__esModule", {
+        value: !0
+    }), e);
+var Ve = {};
+ee(Ve, {
+    CheckmarkIcon: ()=>F,
+    ErrorIcon: ()=>w,
+    LoaderIcon: ()=>M,
+    ToastBar: ()=>$,
+    ToastIcon: ()=>U,
+    Toaster: ()=>J,
+    default: ()=>_e,
+    resolveValue: ()=>u,
+    toast: ()=>n,
+    useToaster: ()=>V,
+    useToasterStore: ()=>_
+});
+module.exports = te(Ve);
+var oe = (e)=>typeof e == "function", u = (e, t)=>oe(e) ? e(t) : e;
+var Q = (()=>{
+    let e = 0;
+    return ()=>(++e).toString();
+})(), R = (()=>{
+    let e;
+    return ()=>{
+        if (e === void 0 && typeof window < "u") {
+            let t = matchMedia("(prefers-reduced-motion: reduce)");
+            e = !t || t.matches;
+        }
+        return e;
+    };
+})();
+var k = require("cff97412359109c"), re = 20;
+var v = new Map, se = 1e3, X = (e)=>{
+    if (v.has(e)) return;
+    let t = setTimeout(()=>{
+        v.delete(e), l({
+            type: 4,
+            toastId: e
+        });
+    }, se);
+    v.set(e, t);
+}, ae = (e)=>{
+    let t = v.get(e);
+    t && clearTimeout(t);
+}, H = (e, t)=>{
+    switch(t.type){
+        case 0:
+            return {
+                ...e,
+                toasts: [
+                    t.toast,
+                    ...e.toasts
+                ].slice(0, re)
+            };
+        case 1:
+            return t.toast.id && ae(t.toast.id), {
+                ...e,
+                toasts: e.toasts.map((a)=>a.id === t.toast.id ? {
+                        ...a,
+                        ...t.toast
+                    } : a)
+            };
+        case 2:
+            let { toast: o } = t;
+            return e.toasts.find((a)=>a.id === o.id) ? H(e, {
+                type: 1,
+                toast: o
+            }) : H(e, {
+                type: 0,
+                toast: o
+            });
+        case 3:
+            let { toastId: s } = t;
+            return s ? X(s) : e.toasts.forEach((a)=>{
+                X(a.id);
+            }), {
+                ...e,
+                toasts: e.toasts.map((a)=>a.id === s || s === void 0 ? {
+                        ...a,
+                        visible: !1
+                    } : a)
+            };
+        case 4:
+            return t.toastId === void 0 ? {
+                ...e,
+                toasts: []
+            } : {
+                ...e,
+                toasts: e.toasts.filter((a)=>a.id !== t.toastId)
+            };
+        case 5:
+            return {
+                ...e,
+                pausedAt: t.time
+            };
+        case 6:
+            let r = t.time - (e.pausedAt || 0);
+            return {
+                ...e,
+                pausedAt: void 0,
+                toasts: e.toasts.map((a)=>({
+                        ...a,
+                        pauseDuration: a.pauseDuration + r
+                    }))
+            };
+    }
+}, I = [], D = {
+    toasts: [],
+    pausedAt: void 0
+}, l = (e)=>{
+    D = H(D, e), I.forEach((t)=>{
+        t(D);
+    });
+}, ie = {
+    blank: 4e3,
+    error: 4e3,
+    success: 2e3,
+    loading: 1 / 0,
+    custom: 4e3
+}, _ = (e = {})=>{
+    let [t, o] = (0, k.useState)(D);
+    (0, k.useEffect)(()=>(I.push(o), ()=>{
+            let r = I.indexOf(o);
+            r > -1 && I.splice(r, 1);
+        }), [
+        t
+    ]);
+    let s = t.toasts.map((r)=>{
+        var a, c;
+        return {
+            ...e,
+            ...e[r.type],
+            ...r,
+            duration: r.duration || ((a = e[r.type]) == null ? void 0 : a.duration) || (e == null ? void 0 : e.duration) || ie[r.type],
+            style: {
+                ...e.style,
+                ...(c = e[r.type]) == null ? void 0 : c.style,
+                ...r.style
+            }
+        };
+    });
+    return {
+        ...t,
+        toasts: s
+    };
+};
+var ce = (e, t = "blank", o)=>({
+        createdAt: Date.now(),
+        visible: !0,
+        type: t,
+        ariaProps: {
+            role: "status",
+            "aria-live": "polite"
+        },
+        message: e,
+        pauseDuration: 0,
+        ...o,
+        id: (o == null ? void 0 : o.id) || Q()
+    }), S = (e)=>(t, o)=>{
+        let s = ce(t, e, o);
+        return l({
+            type: 2,
+            toast: s
+        }), s.id;
+    }, n = (e, t)=>S("blank")(e, t);
+n.error = S("error");
+n.success = S("success");
+n.loading = S("loading");
+n.custom = S("custom");
+n.dismiss = (e)=>{
+    l({
+        type: 3,
+        toastId: e
+    });
+};
+n.remove = (e)=>l({
+        type: 4,
+        toastId: e
+    });
+n.promise = (e, t, o)=>{
+    let s = n.loading(t.loading, {
+        ...o,
+        ...o == null ? void 0 : o.loading
+    });
+    return e.then((r)=>(n.success(u(t.success, r), {
+            id: s,
+            ...o,
+            ...o == null ? void 0 : o.success
+        }), r)).catch((r)=>{
+        n.error(u(t.error, r), {
+            id: s,
+            ...o,
+            ...o == null ? void 0 : o.error
+        });
+    }), e;
+};
+var A = require("cff97412359109c");
+var pe = (e, t)=>{
+    l({
+        type: 1,
+        toast: {
+            id: e,
+            height: t
+        }
+    });
+}, de = ()=>{
+    l({
+        type: 5,
+        time: Date.now()
+    });
+}, V = (e)=>{
+    let { toasts: t, pausedAt: o } = _(e);
+    (0, A.useEffect)(()=>{
+        if (o) return;
+        let a = Date.now(), c = t.map((i)=>{
+            if (i.duration === 1 / 0) return;
+            let d = (i.duration || 0) + i.pauseDuration - (a - i.createdAt);
+            if (d < 0) {
+                i.visible && n.dismiss(i.id);
+                return;
+            }
+            return setTimeout(()=>n.dismiss(i.id), d);
+        });
+        return ()=>{
+            c.forEach((i)=>i && clearTimeout(i));
+        };
+    }, [
+        t,
+        o
+    ]);
+    let s = (0, A.useCallback)(()=>{
+        o && l({
+            type: 6,
+            time: Date.now()
+        });
+    }, [
+        o
+    ]), r = (0, A.useCallback)((a, c)=>{
+        let { reverseOrder: i = !1, gutter: d = 8, defaultPosition: p } = c || {}, g = t.filter((m)=>(m.position || p) === (a.position || p) && m.height), z = g.findIndex((m)=>m.id === a.id), O = g.filter((m, B)=>B < z && m.visible).length;
+        return g.filter((m)=>m.visible).slice(...i ? [
+            O + 1
+        ] : [
+            0,
+            O
+        ]).reduce((m, B)=>m + (B.height || 0) + d, 0);
+    }, [
+        t
+    ]);
+    return {
+        toasts: t,
+        handlers: {
+            updateHeight: pe,
+            startPause: de,
+            endPause: s,
+            calculateOffset: r
+        }
+    };
+};
+var T = W(require("cff97412359109c")), b = require("eb1a85e6ba4f13eb");
+var y = W(require("cff97412359109c")), x = require("eb1a85e6ba4f13eb");
+var h = require("eb1a85e6ba4f13eb"), me = h.keyframes`
+from {
+  transform: scale(0) rotate(45deg);
+	opacity: 0;
+}
+to {
+ transform: scale(1) rotate(45deg);
+  opacity: 1;
+}`, ue = h.keyframes`
+from {
+  transform: scale(0);
+  opacity: 0;
+}
+to {
+  transform: scale(1);
+  opacity: 1;
+}`, le = h.keyframes`
+from {
+  transform: scale(0) rotate(90deg);
+	opacity: 0;
+}
+to {
+  transform: scale(1) rotate(90deg);
+	opacity: 1;
+}`, w = (0, h.styled)("div")`
+  width: 20px;
+  opacity: 0;
+  height: 20px;
+  border-radius: 10px;
+  background: ${(e)=>e.primary || "#ff4b4b"};
+  position: relative;
+  transform: rotate(45deg);
+
+  animation: ${me} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards;
+  animation-delay: 100ms;
+
+  &:after,
+  &:before {
+    content: '';
+    animation: ${ue} 0.15s ease-out forwards;
+    animation-delay: 150ms;
+    position: absolute;
+    border-radius: 3px;
+    opacity: 0;
+    background: ${(e)=>e.secondary || "#fff"};
+    bottom: 9px;
+    left: 4px;
+    height: 2px;
+    width: 12px;
+  }
+
+  &:before {
+    animation: ${le} 0.15s ease-out forwards;
+    animation-delay: 180ms;
+    transform: rotate(90deg);
+  }
+`;
+var C = require("eb1a85e6ba4f13eb"), Te = C.keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`, M = (0, C.styled)("div")`
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid;
+  border-radius: 100%;
+  border-color: ${(e)=>e.secondary || "#e0e0e0"};
+  border-right-color: ${(e)=>e.primary || "#616161"};
+  animation: ${Te} 1s linear infinite;
+`;
+var P = require("eb1a85e6ba4f13eb"), fe = P.keyframes`
+from {
+  transform: scale(0) rotate(45deg);
+	opacity: 0;
+}
+to {
+  transform: scale(1) rotate(45deg);
+	opacity: 1;
+}`, ye = P.keyframes`
+0% {
+	height: 0;
+	width: 0;
+	opacity: 0;
+}
+40% {
+  height: 0;
+	width: 6px;
+	opacity: 1;
+}
+100% {
+  opacity: 1;
+  height: 10px;
+}`, F = (0, P.styled)("div")`
+  width: 20px;
+  opacity: 0;
+  height: 20px;
+  border-radius: 10px;
+  background: ${(e)=>e.primary || "#61d345"};
+  position: relative;
+  transform: rotate(45deg);
+
+  animation: ${fe} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards;
+  animation-delay: 100ms;
+  &:after {
+    content: '';
+    box-sizing: border-box;
+    animation: ${ye} 0.2s ease-out forwards;
+    opacity: 0;
+    animation-delay: 200ms;
+    position: absolute;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: ${(e)=>e.secondary || "#fff"};
+    bottom: 6px;
+    left: 6px;
+    height: 10px;
+    width: 6px;
+  }
+`;
+var ge = (0, x.styled)("div")`
+  position: absolute;
+`, he = (0, x.styled)("div")`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20px;
+  min-height: 20px;
+`, xe = x.keyframes`
+from {
+  transform: scale(0.6);
+  opacity: 0.4;
+}
+to {
+  transform: scale(1);
+  opacity: 1;
+}`, be = (0, x.styled)("div")`
+  position: relative;
+  transform: scale(0.6);
+  opacity: 0.4;
+  min-width: 20px;
+  animation: ${xe} 0.3s 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards;
+`, U = ({ toast: e })=>{
+    let { icon: t, type: o, iconTheme: s } = e;
+    return t !== void 0 ? typeof t == "string" ? y.createElement(be, null, t) : t : o === "blank" ? null : y.createElement(he, null, y.createElement(M, {
+        ...s
+    }), o !== "loading" && y.createElement(ge, null, o === "error" ? y.createElement(w, {
+        ...s
+    }) : y.createElement(F, {
+        ...s
+    })));
+};
+var Se = (e)=>`
+0% {transform: translate3d(0,${e * -200}%,0) scale(.6); opacity:.5;}
+100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
+`, Ae = (e)=>`
+0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
+100% {transform: translate3d(0,${e * -150}%,-1px) scale(.6); opacity:0;}
+`, Pe = "0%{opacity:0;} 100%{opacity:1;}", Oe = "0%{opacity:1;} 100%{opacity:0;}", Ee = (0, b.styled)("div")`
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #363636;
+  line-height: 1.3;
+  will-change: transform;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+  max-width: 350px;
+  pointer-events: auto;
+  padding: 8px 10px;
+  border-radius: 8px;
+`, Re = (0, b.styled)("div")`
+  display: flex;
+  justify-content: center;
+  margin: 4px 10px;
+  color: inherit;
+  flex: 1 1 auto;
+  white-space: pre-line;
+`, ve = (e, t)=>{
+    let s = e.includes("top") ? 1 : -1, [r, a] = R() ? [
+        Pe,
+        Oe
+    ] : [
+        Se(s),
+        Ae(s)
+    ];
+    return {
+        animation: t ? `${(0, b.keyframes)(r)} 0.35s cubic-bezier(.21,1.02,.73,1) forwards` : `${(0, b.keyframes)(a)} 0.4s forwards cubic-bezier(.06,.71,.55,1)`
+    };
+}, $ = T.memo(({ toast: e, position: t, style: o, children: s })=>{
+    let r = e.height ? ve(e.position || t || "top-center", e.visible) : {
+        opacity: 0
+    }, a = T.createElement(U, {
+        toast: e
+    }), c = T.createElement(Re, {
+        ...e.ariaProps
+    }, u(e.message, e));
+    return T.createElement(Ee, {
+        className: e.className,
+        style: {
+            ...r,
+            ...o,
+            ...e.style
+        }
+    }, typeof s == "function" ? s({
+        icon: a,
+        message: c
+    }) : T.createElement(T.Fragment, null, a, c));
+});
+var N = require("eb1a85e6ba4f13eb"), f = W(require("cff97412359109c"));
+(0, N.setup)(f.createElement);
+var Ie = ({ id: e, className: t, style: o, onHeightUpdate: s, children: r })=>{
+    let a = f.useCallback((c)=>{
+        if (c) {
+            let i = ()=>{
+                let d = c.getBoundingClientRect().height;
+                s(e, d);
+            };
+            i(), new MutationObserver(i).observe(c, {
+                subtree: !0,
+                childList: !0,
+                characterData: !0
+            });
+        }
+    }, [
+        e,
+        s
+    ]);
+    return f.createElement("div", {
+        ref: a,
+        className: t,
+        style: o
+    }, r);
+}, De = (e, t)=>{
+    let o = e.includes("top"), s = o ? {
+        top: 0
+    } : {
+        bottom: 0
+    }, r = e.includes("center") ? {
+        justifyContent: "center"
+    } : e.includes("right") ? {
+        justifyContent: "flex-end"
+    } : {};
+    return {
+        left: 0,
+        right: 0,
+        display: "flex",
+        position: "absolute",
+        transition: R() ? void 0 : "all 230ms cubic-bezier(.21,1.02,.73,1)",
+        transform: `translateY(${t * (o ? 1 : -1)}px)`,
+        ...s,
+        ...r
+    };
+}, ke = N.css`
+  z-index: 9999;
+  > * {
+    pointer-events: auto;
+  }
+`, L = 16, J = ({ reverseOrder: e, position: t = "top-center", toastOptions: o, gutter: s, children: r, containerStyle: a, containerClassName: c })=>{
+    let { toasts: i, handlers: d } = V(o);
+    return f.createElement("div", {
+        style: {
+            position: "fixed",
+            zIndex: 9999,
+            top: L,
+            left: L,
+            right: L,
+            bottom: L,
+            pointerEvents: "none",
+            ...a
+        },
+        className: c,
+        onMouseEnter: d.startPause,
+        onMouseLeave: d.endPause
+    }, i.map((p)=>{
+        let g = p.position || t, z = d.calculateOffset(p, {
+            reverseOrder: e,
+            gutter: s,
+            defaultPosition: t
+        }), O = De(g, z);
+        return f.createElement(Ie, {
+            id: p.id,
+            key: p.id,
+            onHeightUpdate: d.updateHeight,
+            className: p.visible ? ke : "",
+            style: O
+        }, p.type === "custom" ? u(p.message, p) : r ? r(p) : f.createElement($, {
+            toast: p,
+            position: g
+        }));
+    }));
+};
+var _e = n;
+
+},{"cff97412359109c":"21dqq","eb1a85e6ba4f13eb":"gILVw"}],"gILVw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "css", ()=>u);
+parcelHelpers.export(exports, "extractCss", ()=>r);
+parcelHelpers.export(exports, "glob", ()=>b);
+parcelHelpers.export(exports, "keyframes", ()=>h);
+parcelHelpers.export(exports, "setup", ()=>m);
+parcelHelpers.export(exports, "styled", ()=>j);
+let e = {
+    data: ""
+}, t = (t)=>"object" == typeof window ? ((t ? t.querySelector("#_goober") : window._goober) || Object.assign((t || document.head).appendChild(document.createElement("style")), {
+        innerHTML: " ",
+        id: "_goober"
+    })).firstChild : t || e, r = (e)=>{
+    let r = t(e), l = r.data;
+    return r.data = "", l;
+}, l = /(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g, a = /\/\*[^]*?\*\/|  +/g, n = /\n+/g, o = (e, t)=>{
+    let r = "", l = "", a = "";
+    for(let n in e){
+        let c = e[n];
+        "@" == n[0] ? "i" == n[1] ? r = n + " " + c + ";" : l += "f" == n[1] ? o(c, n) : n + "{" + o(c, "k" == n[1] ? "" : t) + "}" : "object" == typeof c ? l += o(c, t ? t.replace(/([^,])+/g, (e)=>n.replace(/(^:.*)|([^,])+/g, (t)=>/&/.test(t) ? t.replace(/&/g, e) : e ? e + " " + t : t)) : n) : null != c && (n = /^--/.test(n) ? n : n.replace(/[A-Z]/g, "-$&").toLowerCase(), a += o.p ? o.p(n, c) : n + ":" + c + ";");
+    }
+    return r + (t && a ? t + "{" + a + "}" : a) + l;
+}, c = {}, s = (e)=>{
+    if ("object" == typeof e) {
+        let t = "";
+        for(let r in e)t += r + s(e[r]);
+        return t;
+    }
+    return e;
+}, i = (e, t, r, i, p)=>{
+    let u = s(e), d = c[u] || (c[u] = ((e)=>{
+        let t = 0, r = 11;
+        for(; t < e.length;)r = 101 * r + e.charCodeAt(t++) >>> 0;
+        return "go" + r;
+    })(u));
+    if (!c[d]) {
+        let t = u !== e ? e : ((e)=>{
+            let t, r, o = [
+                {}
+            ];
+            for(; t = l.exec(e.replace(a, ""));)t[4] ? o.shift() : t[3] ? (r = t[3].replace(n, " ").trim(), o.unshift(o[0][r] = o[0][r] || {})) : o[0][t[1]] = t[2].replace(n, " ").trim();
+            return o[0];
+        })(e);
+        c[d] = o(p ? {
+            ["@keyframes " + d]: t
+        } : t, r ? "" : "." + d);
+    }
+    let f = r && c.g ? c.g : null;
+    return r && (c.g = c[d]), ((e, t, r, l)=>{
+        l ? t.data = t.data.replace(l, e) : -1 === t.data.indexOf(e) && (t.data = r ? e + t.data : t.data + e);
+    })(c[d], t, i, f), d;
+}, p = (e, t, r)=>e.reduce((e, l, a)=>{
+        let n = t[a];
+        if (n && n.call) {
+            let e = n(r), t = e && e.props && e.props.className || /^go/.test(e) && e;
+            n = t ? "." + t : e && "object" == typeof e ? e.props ? "" : o(e, "") : !1 === e ? "" : e;
+        }
+        return e + l + (null == n ? "" : n);
+    }, "");
+function u(e) {
+    let r = this || {}, l = e.call ? e(r.p) : e;
+    return i(l.unshift ? l.raw ? p(l, [].slice.call(arguments, 1), r.p) : l.reduce((e, t)=>Object.assign(e, t && t.call ? t(r.p) : t), {}) : l, t(r.target), r.g, r.o, r.k);
+}
+let d, f, g, b = u.bind({
+    g: 1
+}), h = u.bind({
+    k: 1
+});
+function m(e, t, r, l) {
+    o.p = t, d = e, f = r, g = l;
+}
+function j(e, t) {
+    let r = this || {};
+    return function() {
+        let l = arguments;
+        function a(n, o) {
+            let c = Object.assign({}, n), s = c.className || a.className;
+            r.p = Object.assign({
+                theme: f && f()
+            }, c), r.o = / *go\d+/.test(s), c.className = u.apply(r, l) + (s ? " " + s : ""), t && (c.ref = o);
+            let i = e;
+            return e[0] && (i = c.as || e, delete c.as), g && i[0] && g(c), d(i, c);
+        }
+        return t ? t(a) : a;
+    };
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gQTpw":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$945d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

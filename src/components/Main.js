@@ -4,6 +4,7 @@ import Header from "./Header";
 import Body from "./Body";
 import ModalAdd from "./ModalAdd";
 import TagsFilter from "./TagsFilter";
+import toast from "react-hot-toast";
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -18,86 +19,72 @@ const Layout = () => {
     hideDone,
   } = useSelector((state) => state.todos);
 
-  const handleOpen = () => dispatch({ type: 'SET_OPEN', payload: true });
+  const handleOpen = () => dispatch({ type: "SET_OPEN", payload: true });
   const handleClose = () => {
-    dispatch({ type: 'SET_OPEN', payload: false });
-    dispatch({ type: 'SET_EDITING_INDEX', payload: null });
-    dispatch({ type: 'SET_INPUT_VALUE', payload: "" });
-    dispatch({ type: 'SET_DESCRIPTION_VALUE', payload: "" });
-    dispatch({ type: 'SET_SELECTED_TAG', payload: "" });
+    dispatch({ type: "SET_OPEN", payload: false });
+    dispatch({ type: "SET_EDITING_INDEX", payload: null });
+    dispatch({ type: "SET_INPUT_VALUE", payload: "" });
+    dispatch({ type: "SET_DESCRIPTION_VALUE", payload: "" });
+    dispatch({ type: "SET_SELECTED_TAG", payload: "" });
   };
 
   const handleTitle = (event) => {
-    dispatch({ type: 'SET_INPUT_VALUE', payload: event.target.value });
+    dispatch({ type: "SET_INPUT_VALUE", payload: event.target.value });
   };
 
   const handleDescription = (event) => {
-    dispatch({ type: 'SET_DESCRIPTION_VALUE', payload: event.target.value });
+    dispatch({ type: "SET_DESCRIPTION_VALUE", payload: event.target.value });
   };
 
   const handleTagClick = (tag) => {
-    dispatch({ type: 'SET_SELECTED_TAG', payload: tag === selectedTag ? "" : tag });
+    dispatch({
+      type: "SET_SELECTED_TAG",
+      payload: tag === selectedTag ? "" : tag,
+    });
   };
 
   const handleTagSelect = (tag) => {
-    dispatch({ type: 'SET_FILTER_TAG', payload: tag === filterTag ? "" : tag });
+    dispatch({ type: "SET_FILTER_TAG", payload: tag === filterTag ? "" : tag });
   };
 
   const handleSubmit = () => {
     if (inputValue) {
-      const newTodo = {
-        title: inputValue.trim(),
-        description: descriptionValue.trim(),
-        tags: selectedTag ? [selectedTag] : [],
-        done: false,
-      };
-
-      setTimeout(() => {
-        if (editingIndex !== null) {
-          const updatedTodos = [...todos];
-          updatedTodos[editingIndex] = { ...updatedTodos[editingIndex], ...newTodo };
-          dispatch({ type: 'SET_TODOS', payload: updatedTodos });
-        } else {
-          dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
-        }
-        handleClose();
-      }, 1000);
+    const newTodo = {
+    title: inputValue.trim(),
+    description: descriptionValue.trim(),
+    tags: selectedTag ? [selectedTag] : [],
+    done: false,
+    };
+    if (editingIndex !== null) {
+    const updatedTodos = [...todos];
+    updatedTodos[editingIndex] = { ...updatedTodos[editingIndex], ...newTodo };
+    dispatch({ type: 'SET_TODOS', payload: updatedTodos });
+    toast.success("Todo Updated Successfully");
+    } else {
+    dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
+    toast.success("Todo Added Successfully");
     }
-  };
-
-  const handleDelete = (index) => {
-    const newTodos = todos.filter((_, i) => i !== index);
-    dispatch({ type: 'SET_TODOS', payload: newTodos });
-  };
-
-  const handleEdit = (index) => {
-    const todo = todos[index];
-    dispatch({ type: 'SET_INPUT_VALUE', payload: todo.title });
-    dispatch({ type: 'SET_DESCRIPTION_VALUE', payload: todo.description });
-    dispatch({ type: 'SET_SELECTED_TAG', payload: todo.tags[0] || "" });
-    dispatch({ type: 'SET_EDITING_INDEX', payload: index });
-    handleOpen();
-  };
+    handleClose();
+    }
+    };
 
   const toggleHideDone = () => {
-    dispatch({ type: 'SET_HIDE_DONE' });
+    dispatch({ type: "SET_HIDE_DONE" });
   };
-  
+
   return (
     <>
       <Header handleOpen={handleOpen} />
       <div className="flex max-md:flex-col">
-        <TagsFilter 
-          selectedTag={filterTag} 
-          handleTagSelect={handleTagSelect} 
-          toggleHideDone={toggleHideDone} 
+        <TagsFilter
+          selectedTag={filterTag}
+          handleTagSelect={handleTagSelect}
+          toggleHideDone={toggleHideDone}
           hideDone={hideDone}
         />
-        <Body 
-          todos={todos} 
-          handleDelete={handleDelete} 
-          handleEdit={handleEdit} 
-          selectedTag={filterTag} 
+        <Body
+          todos={todos}
+          selectedTag={filterTag}
           hideDone={hideDone}
         />
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 
 const tagColors = {
@@ -27,6 +28,12 @@ const Body = () => {
   const handleDelete = (index) => {
     const newTodos = todos.filter((_, i) => i !== index);
     dispatch({ type: "SET_TODOS", payload: newTodos });
+    toast.error("Todo Deleted Successsfully");
+    if (dropdownIndex === index) {
+      setDropdownIndex(null);
+    } else if (dropdownIndex > index) {
+      setDropdownIndex(dropdownIndex - 1);
+    }
   };
 
   const handleEdit = (index) => {
@@ -49,7 +56,10 @@ const Body = () => {
   });
 
   const handleClickOutside = (event) => {
-    if (dropdownRefs.current[dropdownIndex] && !dropdownRefs.current[dropdownIndex].contains(event.target)) {
+    if (
+      dropdownRefs.current[dropdownIndex] &&
+      !dropdownRefs.current[dropdownIndex].contains(event.target)
+    ) {
       setDropdownIndex(null);
     }
   };
@@ -66,7 +76,7 @@ const Body = () => {
       <ul className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
         {filteredTodos.map((todo, index) => (
           <li
-            className={`bg-[#FDF9DE] gap-7 max-md:w-auto rounded-md p-4 my-2 flex flex-col justify-between`}
+            className="bg-[#FDF9DE] gap-7 max-md:w-auto rounded-md p-4 my-2 flex flex-col justify-between"
             key={index}
           >
             <div>
@@ -114,9 +124,7 @@ const Body = () => {
                 {todo.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className={`${
-                      tagColors[tag.toLowerCase()]
-                    } rounded-full px-2 py-1 mr-2 text-xs`}
+                    className={`${tagColors[tag.toLowerCase()]} rounded-full px-2 py-1 mr-2 text-xs`}
                   >
                     {tag}
                   </span>
