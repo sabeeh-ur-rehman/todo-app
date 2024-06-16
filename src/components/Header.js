@@ -6,7 +6,7 @@ const Header = ({ handleOpen }) => {
   };
   return (
     <>
-      <div className="flex justify-between items-center border-b p-8 max-md:m-6">
+      <div className="flex justify-between items-center border-b p-8 max-md:px-2 max-md:m-4">
         <h1
           onClick={reloadPage}
           className="font-bold text-2xl cursor-pointer text-[#69665c]"

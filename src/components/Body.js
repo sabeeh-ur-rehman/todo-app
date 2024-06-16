@@ -72,7 +72,7 @@ const Body = () => {
   }, [dropdownIndex]);
 
   return (
-    <div className="max-md:m-2 p-2 px-8 w-full">
+    <div className="p-2 px-4 w-full">
       <ul className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
         {filteredTodos.map((todo, index) => (
           <li

@@ -28537,7 +28537,7 @@ const Header = ({ handleOpen })=>{
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            className: "flex justify-between items-center border-b p-8 max-md:m-6",
+            className: "flex justify-between items-center border-b p-8 max-md:px-2 max-md:m-4",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                     onClick: reloadPage,
@@ -28818,7 +28818,7 @@ const Body = ()=>{
         dropdownIndex
     ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "max-md:m-2 p-2 px-8 w-full",
+        className: "p-2 px-4 w-full",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
             className: "grid grid-cols-2 max-md:grid-cols-1 gap-4",
             children: filteredTodos.map((todo, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -42169,10 +42169,10 @@ const TagsFilter = ()=>{
         className: "p-4 max-md:p-6 flex flex-col justify-between h-[calc(100vh-100px)] max-md:h-auto max-md:border-r-0 border-r",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "flex flex-col max-md:flex-row max-md:justify-between gap-2",
+                className: "flex flex-col max-md:flex-row max-md:justify-between max-md:gap-0 gap-2",
                 children: Object.keys(tagColors).map((tag)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                         onClick: ()=>handleTagSelect(tag),
-                        className: `${tagColors[tag]} rounded-full text-[#69665c] p-2 text-xs font-bold outline-none ${filterTag === tag ? "ring-1 ring-offset-2 ring-[#69665C]" : ""}`,
+                        className: `${tagColors[tag]} rounded-full text-[#69665c] p-2 text-xs max-md:text-[10px] font-bold outline-none ${filterTag === tag ? "ring-1 ring-offset-2 ring-[#69665C]" : ""}`,
                         children: tag
                     }, tag, false, {
                         fileName: "src/components/TagsFilter.js",
