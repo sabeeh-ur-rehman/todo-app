@@ -19,11 +19,17 @@ const Body = () => {
     setDropdownIndex(dropdownIndex === index ? null : index);
   };
 
-  const handleDone = (index) => {
+  // const handleDone = (index) => {
+  //   const newTodos = [...todos];
+  //   newTodos[index].done = !newTodos[index].done;
+  //   dispatch({ type: "SET_TODOS", payload: newTodos });
+  // };
+  const handleDone = (originalIndex) => {
     const newTodos = [...todos];
-    newTodos[index].done = !newTodos[index].done;
+    newTodos[originalIndex].done = !newTodos[originalIndex].done;
     dispatch({ type: "SET_TODOS", payload: newTodos });
   };
+  
 
   const handleDelete = (index) => {
     const newTodos = todos.filter((_, i) => i !== index);
@@ -44,8 +50,9 @@ const Body = () => {
     dispatch({ type: "SET_EDITING_INDEX", payload: index });
     dispatch({ type: "SET_OPEN", payload: true });
   };
-
-  const filteredTodos = todos.filter((todo) => {
+  const filteredTodos = todos
+  .map((todo, index) => ({ ...todo, originalIndex: index })) // Map todos to include their original index
+  .filter((todo) => {
     if (filterTag && !todo.tags.includes(filterTag)) {
       return false;
     }
@@ -54,6 +61,7 @@ const Body = () => {
     }
     return true;
   });
+
 
   const handleClickOutside = (event) => {
     if (
@@ -135,10 +143,10 @@ const Body = () => {
                   type="checkbox"
                   className="m-2 accent-white cursor-pointer"
                   checked={todo.done}
-                  onChange={() => handleDone(index)}
+                  onChange={() => handleDone(todo.originalIndex)}
                 />
                 <label
-                  onClick={() => handleDone(index)}
+                  onClick={() => handleDone(todo.originalIndex)}
                   className="font-semibold text-[#69665c] cursor-pointer"
                 >
                   Done

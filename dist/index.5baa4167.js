@@ -28766,11 +28766,16 @@ const Body = ()=>{
     const toggleDropdown = (index)=>{
         setDropdownIndex(dropdownIndex === index ? null : index);
     };
-    const handleDone = (index)=>{
+    // const handleDone = (index) => {
+    //   const newTodos = [...todos];
+    //   newTodos[index].done = !newTodos[index].done;
+    //   dispatch({ type: "SET_TODOS", payload: newTodos });
+    // };
+    const handleDone = (originalIndex)=>{
         const newTodos = [
             ...todos
         ];
-        newTodos[index].done = !newTodos[index].done;
+        newTodos[originalIndex].done = !newTodos[originalIndex].done;
         dispatch({
             type: "SET_TODOS",
             payload: newTodos
@@ -28809,7 +28814,11 @@ const Body = ()=>{
             payload: true
         });
     };
-    const filteredTodos = todos.filter((todo)=>{
+    const filteredTodos = todos.map((todo, index)=>({
+            ...todo,
+            originalIndex: index
+        })) // Map todos to include their original index
+    .filter((todo)=>{
         if (filterTag && !todo.tags.includes(filterTag)) return false;
         if (hideDone && todo.done) return false;
         return true;
@@ -28842,7 +28851,7 @@ const Body = ()=>{
                                             children: todo.title
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 84,
+                                            lineNumber: 92,
                                             columnNumber: 17
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28858,12 +28867,12 @@ const Body = ()=>{
                                                         d: "M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
                                                     }, void 0, false, {
                                                         fileName: "src/components/Body.js",
-                                                        lineNumber: 98,
+                                                        lineNumber: 106,
                                                         columnNumber: 21
                                                     }, undefined)
                                                 }, void 0, false, {
                                                     fileName: "src/components/Body.js",
-                                                    lineNumber: 92,
+                                                    lineNumber: 100,
                                                     columnNumber: 19
                                                 }, undefined),
                                                 dropdownIndex === index && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -28875,7 +28884,7 @@ const Body = ()=>{
                                                             children: "Edit"
                                                         }, void 0, false, {
                                                             fileName: "src/components/Body.js",
-                                                            lineNumber: 102,
+                                                            lineNumber: 110,
                                                             columnNumber: 23
                                                         }, undefined),
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -28884,25 +28893,25 @@ const Body = ()=>{
                                                             children: "Delete"
                                                         }, void 0, false, {
                                                             fileName: "src/components/Body.js",
-                                                            lineNumber: 108,
+                                                            lineNumber: 116,
                                                             columnNumber: 23
                                                         }, undefined)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "src/components/Body.js",
-                                                    lineNumber: 101,
+                                                    lineNumber: 109,
                                                     columnNumber: 21
                                                 }, undefined)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 91,
+                                            lineNumber: 99,
                                             columnNumber: 17
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 83,
+                                    lineNumber: 91,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -28910,13 +28919,13 @@ const Body = ()=>{
                                     children: todo.description
                                 }, void 0, false, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 118,
+                                    lineNumber: 126,
                                     columnNumber: 15
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 82,
+                            lineNumber: 90,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28928,12 +28937,12 @@ const Body = ()=>{
                                             children: tag
                                         }, tagIndex, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 125,
+                                            lineNumber: 133,
                                             columnNumber: 19
                                         }, undefined))
                                 }, void 0, false, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 123,
+                                    lineNumber: 131,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28943,47 +28952,47 @@ const Body = ()=>{
                                             type: "checkbox",
                                             className: "m-2 accent-white cursor-pointer",
                                             checked: todo.done,
-                                            onChange: ()=>handleDone(index)
+                                            onChange: ()=>handleDone(todo.originalIndex)
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 134,
+                                            lineNumber: 142,
                                             columnNumber: 17
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                            onClick: ()=>handleDone(index),
+                                            onClick: ()=>handleDone(todo.originalIndex),
                                             className: "font-semibold text-[#69665c] cursor-pointer",
                                             children: "Done"
                                         }, void 0, false, {
                                             fileName: "src/components/Body.js",
-                                            lineNumber: 140,
+                                            lineNumber: 148,
                                             columnNumber: 17
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 133,
+                                    lineNumber: 141,
                                     columnNumber: 15
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 122,
+                            lineNumber: 130,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, index, true, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 78,
+                    lineNumber: 86,
                     columnNumber: 11
                 }, undefined))
         }, void 0, false, {
             fileName: "src/components/Body.js",
-            lineNumber: 76,
+            lineNumber: 84,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 75,
+        lineNumber: 83,
         columnNumber: 5
     }, undefined);
 };
