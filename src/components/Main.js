@@ -49,24 +49,27 @@ const Layout = () => {
 
   const handleSubmit = () => {
     if (inputValue) {
-    const newTodo = {
-    title: inputValue.trim(),
-    description: descriptionValue.trim(),
-    tags: selectedTag ? [selectedTag] : [],
-    done: false,
-    };
-    if (editingIndex !== null) {
-    const updatedTodos = [...todos];
-    updatedTodos[editingIndex] = { ...updatedTodos[editingIndex], ...newTodo };
-    dispatch({ type: 'SET_TODOS', payload: updatedTodos });
-    toast.success("Todo Updated Successfully");
-    } else {
-    dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
-    toast.success("Todo Added Successfully");
+      const newTodo = {
+        title: inputValue.trim(),
+        description: descriptionValue.trim(),
+        tags: selectedTag ? [selectedTag] : [],
+        done: false,
+      };
+
+      if (editingIndex !== null) {
+        const updatedTodos = [...todos];
+        updatedTodos[editingIndex] = { ...updatedTodos[editingIndex], ...newTodo };
+        dispatch({ type: 'SET_TODOS', payload: updatedTodos });
+        toast.success("Todo Updated Successfully");
+        dispatch({ type: 'SET_FILTER_TAG', payload: selectedTag });
+      } else {
+        dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
+        toast.success("Todo Added Successfully");
+        dispatch({ type: 'SET_FILTER_TAG', payload: selectedTag });
+      }
+      handleClose();
     }
-    handleClose();
-    }
-    };
+  };
 
   const toggleHideDone = () => {
     dispatch({ type: "SET_HIDE_DONE" });

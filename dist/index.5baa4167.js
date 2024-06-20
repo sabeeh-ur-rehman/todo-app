@@ -27324,6 +27324,10 @@ const Layout = ()=>{
                     payload: updatedTodos
                 });
                 (0, _reactHotToastDefault.default).success("Todo Updated Successfully");
+                dispatch({
+                    type: "SET_FILTER_TAG",
+                    payload: selectedTag
+                });
             } else {
                 dispatch({
                     type: "SET_TODOS",
@@ -27333,6 +27337,10 @@ const Layout = ()=>{
                     ]
                 });
                 (0, _reactHotToastDefault.default).success("Todo Added Successfully");
+                dispatch({
+                    type: "SET_FILTER_TAG",
+                    payload: selectedTag
+                });
             }
             handleClose();
         }
@@ -27348,7 +27356,7 @@ const Layout = ()=>{
                 handleOpen: handleOpen
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 77,
+                lineNumber: 80,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27361,7 +27369,7 @@ const Layout = ()=>{
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 79,
+                        lineNumber: 82,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bodyDefault.default), {
@@ -27370,13 +27378,13 @@ const Layout = ()=>{
                         hideDone: hideDone
                     }, void 0, false, {
                         fileName: "src/components/Main.js",
-                        lineNumber: 85,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Main.js",
-                lineNumber: 78,
+                lineNumber: 81,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalAddDefault.default), {
@@ -27392,7 +27400,7 @@ const Layout = ()=>{
                 isEditing: editingIndex !== null
             }, void 0, false, {
                 fileName: "src/components/Main.js",
-                lineNumber: 91,
+                lineNumber: 94,
                 columnNumber: 7
             }, undefined)
         ]
@@ -28995,7 +29003,7 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"62sf7","react-hot-toast":"gi0hv"}],"gi0hv":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-hot-toast":"gi0hv","react-redux":"62sf7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gi0hv":[function(require,module,exports) {
 "use client";
 "use strict";
 var Y = Object.create;
